@@ -66,7 +66,7 @@ public class _01_StringMethods {
 		s3 = s3.trim();
 
 		String s1p = s1.substring(s1.indexOf(" "));
-	String	s2p = s2.substring(s2.indexOf(" "));
+		String s2p = s2.substring(s2.indexOf(" "));
 		String s3p = s3.substring(s3.indexOf(" "));
 
 		String result = s1p;
@@ -78,9 +78,7 @@ public class _01_StringMethods {
 		if (s3p.compareTo(result) < 0) {
 			result = s3p;
 		}
-		
-		System.out.println(result);
-		
+
 		if (result.equals(s1p)) {
 			return s1;
 		} else if (result.equals(s2p)) {
@@ -88,53 +86,76 @@ public class _01_StringMethods {
 		} else {
 			return s3;
 		}
-		
+
 	}
 
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
 		int sum = 0;
-		
-		char[] schar = s.toCharArray();
-		
-		for (int x = 0; x < schar.length; x++) {
-			if (Character.isDigit(schar[x])) {
-				sum += schar[x];
+
+		for (int x = 0; x < s.toCharArray().length; x++) {
+			if (Character.isDigit(s.charAt(x))) {
+				sum += Integer.parseInt(s.charAt(x) + "");
+
 			}
 		}
-		
-		System.out.println(sum);
-		
+
 		return sum;
 	}
 
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int result = 0;
+		while (s.indexOf(substring) != -1) {
+			result++;
+			s = s.substring(0, s.indexOf(substring)) + s.substring(s.indexOf(substring) + 1);
+		}
+
+		return result;
 	}
 
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		return Utilities.encrypt(s.getBytes(), (byte) key);
 	}
 
 	// Call Utilities.decrypt at the bottom of this file to decrypt the
 	// cyphertext (encrypted text)
 	public static String decrypt(String s, char key) {
-		return null;
+		return Utilities.encrypt(s.getBytes(), (byte) key);
 	}
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		String[] words = s.split(" ");
+		int result = 0;
+		for (String x : words) {
+			if (x.length() >= substring.length() && x.substring(x.length() - substring.length()).equals(substring)) {
+				
+				result++;
+			}
+		}
+		return result;
 	}
 
 	// Given String s, return the number of characters between the first
 	// occurrence of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int result = 0 - s.indexOf(substring);
+		
+		System.out.println("first index   "  + s.indexOf(substring));
+		int instances = substringCount(s, substring);
+
+		for (int x = 0; x < instances-1; x++) {
+			s = s.substring(0, s.indexOf(substring)) + s.substring(s.indexOf(substring) + 1);
+		}
+		
+		System.out.println("second index   "   + s.indexOf(substring));
+		result += s.indexOf(substring);
+
+		return result;
 	}
 
 	// Return true if String s is a palindrome

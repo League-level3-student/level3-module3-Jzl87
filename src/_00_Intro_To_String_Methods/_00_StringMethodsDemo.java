@@ -19,7 +19,7 @@ public class _00_StringMethodsDemo {
 
         // Check if a character is a letter or a number
         System.out.println("Is " + str.charAt(2) + " a letter: " + Character.isAlphabetic(str.charAt(2)));
-        System.out.println("Is " + str.charAt(2) + " a digit: " + Character.isDigit(str.charAt(2)));
+        System.out.println("Is " + str.charAt(2) + " a 1: " + Character.isDigit(str.charAt(2)));
         
         // Converting a String to a number
         // Do you remember Integer.parseInt()? or Double.parseDouble()?

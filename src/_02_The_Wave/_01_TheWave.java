@@ -21,6 +21,15 @@ public class _01_TheWave {
     
     public static ArrayList<String> wave(String str) {
         
-        return null;
+    	ArrayList<String> result = new ArrayList<String>(str.length());
+    	
+    	for (int index = 0; index < str.length(); index++) {
+    		if (!str.substring(index, index+1).equals(" ")) {
+    			String curStr = str.substring(0, index) + str.substring(index,index+1).toUpperCase() + str.substring(index+1);
+    			result.add(curStr);
+    		}
+    	}
+        
+    	return result;
     }
 }
